@@ -19,4 +19,3 @@ function secondLargestNumber(arr) {
 }
 
 const value = secondLargestNumber(arr);
-console.log(value);
