@@ -12,7 +12,7 @@
  *    - Circular linked list
  */
 
-class Node {
+export class Node {
   constructor(value, next = null) {
     this.value = value;
     this.next = next;
