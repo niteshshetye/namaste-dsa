@@ -20,5 +20,54 @@ function findFirstOccurrence(haystack, needle) {
   return -1;
 }
 
-console.log(findFirstOccurrence("sadbutsad", "sad"));
-console.log(findFirstOccurrence("leetcode", "leeto"));
+// APPROACH 2 KMP (Knuth-Morris-Pratt) Algorithm
+function findFirstOccurrencKmp(haystack, needls) {
+  // find LCP
+  let lps = [0],
+    i = 0,
+    j = 1,
+    m = needls.length,
+    n = haystack.length;
+
+  while (j < m) {
+    if (needls[i] === needls[j]) {
+      lps[j] = i + 1;
+      ++i;
+      ++j;
+    } else {
+      if (i == 0) {
+        lps[j] = 0;
+        ++j;
+      } else {
+        i = lps[i - 1];
+      }
+    }
+  }
+
+  // calculate
+  i = 0;
+  j = 0;
+
+  while (i < n) {
+    if (haystack[i] === needls[j]) {
+      ++i;
+      ++j;
+    } else {
+      if (j === 0) {
+        ++i;
+      } else {
+        j = lps[j - 1];
+      }
+    }
+
+    if (j == m) {
+      return i - m;
+    }
+  }
+
+  return -1;
+}
+
+console.log(findFirstOccurrencKmp("sadbutsad", "sad"));
+console.log(findFirstOccurrencKmp("onionionsky", "onions"));
+console.log(findFirstOccurrencKmp("leetcode", "leeto"));
