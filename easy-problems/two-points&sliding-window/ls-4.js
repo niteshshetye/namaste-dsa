@@ -22,7 +22,7 @@ function findFirstOccurrence(haystack, needle) {
 
 // APPROACH 2 KMP (Knuth-Morris-Pratt) Algorithm
 function findFirstOccurrencKmp(haystack, needls) {
-  // find LCP
+  // find lps (largest common prefix which is also suffix)
   let lps = [0],
     i = 0,
     j = 1,
